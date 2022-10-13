@@ -12,6 +12,27 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.contenido{
+  background-color: #282c34;
+}
+
+.textoBusqueda{
+  color: white;
+}
+.titulo{
+  text-align: center;
+}
+
+.contenedor-boton{
+  position: relative;
+}
+
+.boton{
+  position: absolute;
+  left: 950px;
+  bottom: -20px;
+  width: 150px;
+}
 
 .App-header {
   background-color: #282c34;

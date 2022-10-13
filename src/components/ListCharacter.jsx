@@ -12,11 +12,12 @@ export default function ListCharacter() {
     ]);
     
     const [busqueda, setBusqueda]= useState("");
+    const [filtroStatus, setFiltroStatus] = useState("");
 
     const getCharacters = () => {
         axios.get('https://rickandmortyapi.com/api/character/')
         .then((response) => {
-            //console.log(response.data.results);
+            console.log(response.data.results);
             setCharacters(response.data.results);
         })
         .catch((err) => {console.log(err)})
@@ -36,7 +37,30 @@ export default function ListCharacter() {
         });
         setCharacters(resultBusqueda);
     }
-    
+
+    /** Filtro por estado */
+    const handleCargarbyStatus = e =>{
+        setFiltroStatus(e.target.value);
+        filtrarStatus(e.target.value);
+        /*console.log(opcion);*/
+    }
+
+    const filtrarStatus = (statusCharacter) => {
+        let resultStaus = characters.filter((item) => {
+            if(statusCharacter === 'Alive'){
+                return item.status === 'Alive';
+            }else if(statusCharacter === 'Dead'){
+                return item.status === 'Dead';
+            }else if(statusCharacter === 'unknown'){
+                return item.status === 'unknown';
+            }else{
+                return item;
+            }
+        });
+        setCharacters(resultStaus);
+    }
+
+
     useEffect(() => {
         getCharacters();
     },[])
@@ -47,10 +71,11 @@ export default function ListCharacter() {
             <label htmlFor="" className='textoBusqueda'>Busqueda de personajes:</label>
             <input type="text" className='form-control' value={busqueda} placeholder='Ingrese el personaje' onChange={handleChange}/>
             <br></br>
-            <h2>Filtro de busqueda por Estado</h2>
-            <select name="" id="">
-                <option value=""></option>
-                <option value=""></option>
+            <label htmlFor="" className='textoBusqueda'>Filtro de busqueda por estado</label><br></br>
+            <select name="" id="" value={filtroStatus} onChange={handleCargarbyStatus}>
+                <option value="Alive">Alive</option>
+                <option value="Dead">Dead</option>
+                <option value="unknown">unknown</option>
             </select>
             <br />
             <div className="row">

@@ -28,7 +28,6 @@ export default function Character({char}) {
                         <b>Status: </b> {character.status} <br/>
                         <b>Species: </b> {character.species} <br/>
                         <b>Gender: </b> {character.gender} <br/>
-                        {/*<b>Origin: </b> {character.origin.name} <br/>*/}
                     </p>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Character from './Character';
 
+
 export default function ListCharacter() {
 
     const [characters, setCharacters] = useState([
@@ -24,11 +25,13 @@ export default function ListCharacter() {
     }
 
     /** Metodo de busqueda */
-    const handleChange = e =>{
-        setBusqueda(e.target.value);
-        filtrar(e.target.value);
+    const handleChange = evento =>{
+        //console.log(evento.target.value);
+        setBusqueda(evento.target.value); /** setBusqueda("ricky") */
+        filtrar(evento.target.value);
     }
 
+    /** metodo devueve los nombres de los personajes en minuscula */
     const filtrar=(nameCharacter)=>{
         let resultBusqueda = characters.filter((elemento)=>{
             if(elemento.name.toString().toLowerCase().includes(nameCharacter.toLowerCase())){
@@ -59,7 +62,6 @@ export default function ListCharacter() {
         });
         setCharacters(resultStaus);
     }
-
 
     useEffect(() => {
         getCharacters();
